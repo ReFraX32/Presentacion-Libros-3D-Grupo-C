@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investigación: Programación Asistida por IA — Grupo C (V2)</title>
+  
+  <!-- Tipografías: Inter, JetBrains Mono, Playfair Display y Cinzel (Stripe Press Luxury Serifs) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <!-- Estilos Tema Oscuro Agradable -->
+  <link rel="stylesheet" href="presentation_styles.css">
+</head>
+<body>
+
+  <div id="app">
+    <!-- Escenario 3D WebGL con Three.js (Rueda Animada de Libros 3D Reales) -->
+    <div id="webgl-container"></div>
+
+    <!-- Panel Inferior: Título, Navegación con Flechas y Línea de Tiempo (Sin Footer) -->
+    <div class="bottom-panel">
+      <!-- Fila de Título y Flechas de Navegación -->
+      <section class="carousel-info-bar">
+        <div class="title-navigation-row">
+          <button class="btn-arrow-nav" id="btn-prev" onclick="window.APP.prevSlide();" title="Anterior (Flecha Izquierda)">
+            ←
+          </button>
+          <h2 class="info-slide-title" id="info-title" onclick="window.APP.openSlideDetail();" title="Hacer clic para abrir contenido completo">
+            Cargando...
+          </h2>
+          <button class="btn-arrow-nav" id="btn-next" onclick="window.APP.nextSlide();" title="Siguiente (Flecha Derecha)">
+            →
+          </button>
+        </div>
+
+        <div class="info-slide-sub" id="info-subtitle">
+          Investigador · Tema
+        </div>
+        <div class="info-slide-meta" id="info-meta">
+          Fecha y Categoría
+        </div>
+        <button class="btn-open-detail" onclick="window.APP.openSlideDetail();" title="Abrir contenido completo de este tema">
+          <span class="btn-open-icon">✦</span>
+          <span>ABRIR INVESTIGACIÓN</span>
+        </button>
+      </section>
+
+      <!-- Barra de Línea de Tiempo con Ticks y Punto Indicador Deslizante -->
+      <nav class="timeline-scrubber-section" aria-label="Línea de tiempo de diapositivas">
+        <div class="timeline-track-bar" id="timeline-bar" title="Hacer clic para saltar a cualquier diapositiva">
+          <div class="timeline-scrubber-dot" id="timeline-dot"></div>
+        </div>
+        <div class="timeline-ticks-container" id="timeline-ticks">
+          <!-- Ticks generados dinámicamente del 01 al 12 -->
+        </div>
+      </nav>
+    </div>
+
+    <!-- Modal de Contenido Completo (Tema Oscuro, 100% en Español) -->
+    <div class="modal-slide-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-slide-canvas">
+        <!-- Encabezado del Modal -->
+        <div class="modal-header">
+          <div class="modal-header-left">
+            <span class="modal-header-badge" id="modal-badge">INVESTIGACIÓN GRUPO C · PP3</span>
+            <h3 class="modal-slide-title" id="modal-title">Título de la Diapositiva</h3>
+            <div class="modal-slide-subtitle" id="modal-subtitle">Subtítulo técnico</div>
+          </div>
+          <div class="modal-header-actions">
+            <button class="btn-close-modal" onclick="window.APP.closeSlideDetail();" title="Cerrar (Escape)">
+              ✕
+            </button>
+          </div>
+        </div>
+
+        <!-- Cuerpo del Modal con el 100% del texto, código, diagramas y tablas -->
+        <div class="modal-slide-body" id="modal-body">
+          <!-- Renderizado dinámico -->
+        </div>
+
+        <!-- Pie de Navegación del Modal -->
+        <div class="modal-slide-footer">
+          <span id="modal-counter" style="font-family:var(--font-mono); font-size:0.85rem; font-weight:700; color:var(--text-dim);">
+            1 / 12
+          </span>
+          <div class="modal-footer-nav">
+            <button class="btn-modal-nav" id="modal-btn-prev" onclick="window.APP.prevSlide();" title="Anterior">
+              ❮ Anterior
+            </button>
+            <button class="btn-modal-nav" id="modal-btn-next" onclick="window.APP.nextSlide();" title="Siguiente">
+              Siguiente ❯
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Librería Three.js (Guardada Localmente para funcionamiento sin conexión) -->
+  <script src="three.min.js"></script>
+
+  <!-- Scripts de la Presentación -->
+  <script src="presentation_data.js"></script>
+  <script src="presentation_components.js"></script>
+  <script src="presentation_app.js"></script>
+</body>
+</html>
