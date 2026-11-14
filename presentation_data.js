@@ -9,7 +9,6 @@ window.PRESENTATION_DATA = {
     "title": "Programación Asistida por Inteligencia Artificial",
     "subtitle": "Investigación Técnica — Grupo C",
     "course": "Prácticas Profesionalizantes III (PP3) · ISFDyT N° 179",
-    "date": "Noviembre 2026",
     "institution": "ISFDyT N° 179 'Dr. Carlos Pellegrini'"
   },
   "slides": [
@@ -23,7 +22,6 @@ window.PRESENTATION_DATA = {
       "author": "Grupo C — Equipo de Investigación",
       "shortTitle": "Portada y Equipo",
       "category": "INTRODUCCIÓN Y EQUIPO",
-      "year": "2026",
       "part": "01",
       "theme": {
         "color": "#1e293b",
@@ -66,7 +64,6 @@ window.PRESENTATION_DATA = {
       "author": "Emmanuel Villalba",
       "shortTitle": "Tema 1: LLM Aislados",
       "category": "TEORÍA Y PROBABILIDADES",
-      "year": "2026",
       "part": "02",
       "theme": {
         "color": "#1e40af",
@@ -103,7 +100,6 @@ window.PRESENTATION_DATA = {
       "author": "Emmanuel Villalba",
       "shortTitle": "Tema 2: Agentes y Arnés",
       "category": "ARQUITECTURA Y CONTROL",
-      "year": "2026",
       "part": "03",
       "theme": {
         "color": "#9a3412",
@@ -147,7 +143,6 @@ window.PRESENTATION_DATA = {
       "author": "Lautaro Rasso",
       "shortTitle": "Tema 3: Pruebas y Calidad",
       "category": "CALIDAD Y PRUEBAS EN META",
-      "year": "2026",
       "part": "04",
       "theme": {
         "color": "#b91c1c",
@@ -186,7 +181,6 @@ window.PRESENTATION_DATA = {
       "author": "Lautaro Rasso",
       "shortTitle": "Tema 4: Seguridad y Matriz",
       "category": "SEGURIDAD Y DELEGACIÓN",
-      "year": "2026",
       "part": "05",
       "theme": {
         "color": "#047857",
@@ -223,7 +217,6 @@ window.PRESENTATION_DATA = {
       "author": "Luca Fortin",
       "shortTitle": "Tema 5: Ventajas y Tiempo",
       "category": "MÉTRICAS DE PRODUCTIVIDAD",
-      "year": "2026",
       "part": "06",
       "theme": {
         "color": "#16a34a",
@@ -272,7 +265,6 @@ window.PRESENTATION_DATA = {
       "author": "Luca Fortin",
       "shortTitle": "Tema 6: Deuda Técnica",
       "category": "RIESGOS Y DEUDA TÉCNICA",
-      "year": "2026",
       "part": "07",
       "theme": {
         "color": "#be185d",
@@ -324,7 +316,6 @@ window.PRESENTATION_DATA = {
       "author": "Greta Miranda",
       "shortTitle": "Tema 7: Aprendizaje IA",
       "category": "EDUCACIÓN Y FORMACIÓN",
-      "year": "2026",
       "part": "08",
       "theme": {
         "color": "#d97706",
@@ -362,7 +353,6 @@ window.PRESENTATION_DATA = {
       "author": "Greta Miranda",
       "shortTitle": "Tema 8: Futuro del Rol",
       "category": "EVOLUCIÓN PROFESIONAL",
-      "year": "2026",
       "part": "09",
       "theme": {
         "color": "#6d28d9",
@@ -402,7 +392,6 @@ window.PRESENTATION_DATA = {
       "author": "Grupo C — Metodología",
       "shortTitle": "Metodología Profesional",
       "category": "INGENIERÍA Y PROCESOS",
-      "year": "2026",
       "part": "10",
       "theme": {
         "color": "#0d9488",
@@ -449,7 +438,6 @@ window.PRESENTATION_DATA = {
       "author": "Grupo C — Demostración Técnica",
       "shortTitle": "Vibecoding vs Asistida",
       "category": "CÓDIGO Y AUDITORÍA",
-      "year": "2026",
       "part": "11",
       "theme": {
         "color": "#475569",
@@ -495,7 +483,6 @@ window.PRESENTATION_DATA = {
       "author": "Grupo C — Síntesis General",
       "shortTitle": "Conclusiones Finales",
       "category": "SÍNTESIS Y BALANCE FINAL",
-      "year": "2026",
       "part": "12",
       "theme": {
         "color": "#3730a3",

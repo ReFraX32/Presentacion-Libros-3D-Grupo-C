@@ -301,14 +301,7 @@ window.APP = {
       spineMesh.receiveShadow = true;
       bookRoot.add(spineMesh);
 
-      // 4. HENDIDURA DE BISAGRA / FRENCH GROOVE (Sombra física continua)
-      const grooveGeo = new THREE.BoxGeometry(0.04, coverH - 0.02, 0.03);
-      const grooveMat = new THREE.MeshBasicMaterial({ color: 0x060810 });
-      const frontGroove = new THREE.Mesh(grooveGeo, grooveMat);
-      frontGroove.position.set(-coverW / 2 + 0.19, 0, spineD / 2 + 0.008);
-      bookRoot.add(frontGroove);
-
-      // 5. BLOQUE INTERIOR DE HOJAS
+      // 4. BLOQUE INTERIOR DE HOJAS
       const pagesGeo = new THREE.BoxGeometry(pagesW, pagesH, pagesD);
       const pagesMesh = new THREE.Mesh(pagesGeo, pagesMat);
       pagesMesh.position.set(0.045, 0, 0);
@@ -443,13 +436,14 @@ window.APP = {
     ctx.fillStyle = vignette;
     ctx.fillRect(0, 0, W, H);
 
-    // Sombra en la bisagra izquierda (French groove)
-    const grooveGrad = ctx.createLinearGradient(0, 0, 150, 0);
-    grooveGrad.addColorStop(0, 'rgba(0, 0, 0, 0.48)');
-    grooveGrad.addColorStop(0.5, 'rgba(0, 0, 0, 0.16)');
+    // Sombra suave en la bisagra izquierda (French groove) renderizada en la textura
+    const grooveGrad = ctx.createLinearGradient(0, 0, 130, 0);
+    grooveGrad.addColorStop(0, 'rgba(0, 0, 0, 0.42)');
+    grooveGrad.addColorStop(0.35, 'rgba(0, 0, 0, 0.16)');
+    grooveGrad.addColorStop(0.75, 'rgba(0, 0, 0, 0.04)');
     grooveGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
     ctx.fillStyle = grooveGrad;
-    ctx.fillRect(0, 0, 150, H);
+    ctx.fillRect(0, 0, 130, H);
 
     // 2. Insignia Monograma Stripe Press en la esquina superior derecha
     const badgeW = 110;
@@ -492,9 +486,12 @@ window.APP = {
       [ctx, mCtx, rCtx, bCtx].forEach(c => c.fillText(text, x, y));
     };
 
+    // Margen izquierdo amplio para evitar cualquier colisión con el lomo / bisagra
+    const leftMargin = 220;
+
     // Autor / Investigador
     const authorText = slide.author || 'GRUPO C';
-    drawFoilText(authorText, 110, 160, '500 44px "Playfair Display", "Cinzel", serif', 'left', '1.5px');
+    drawFoilText(authorText, leftMargin, 160, '500 44px "Playfair Display", "Cinzel", serif', 'left', '1.5px');
 
     // Filete divisorio delgado (—)
     [ctx, mCtx, rCtx, bCtx].forEach(c => {
@@ -506,8 +503,8 @@ window.APP = {
     bCtx.strokeStyle = '#ffffff';
     [ctx, mCtx, rCtx, bCtx].forEach(c => {
       c.beginPath();
-      c.moveTo(110, 190);
-      c.lineTo(210, 190);
+      c.moveTo(leftMargin, 190);
+      c.lineTo(leftMargin + 110, 190);
       c.stroke();
     });
 
@@ -535,14 +532,14 @@ window.APP = {
       drawFoilText(line.trim(), startX, curY, font);
     };
 
-    drawFoilWrapTitle(titleText, 110, 280, W - 320, 84);
+    drawFoilWrapTitle(titleText, leftMargin, 280, W - leftMargin - 110, 84);
 
     // 4. OBRA DE ARTE HIPER-DETALLADA QUE ABARCA TODA LA PORTADA
     this.drawHyperDetailedArtwork(ctx, mCtx, rCtx, bCtx, idx, foilColor, baseCloth, W, H);
 
-    // 5. Pie de portada
-    drawFoilText(`PARTE ${slide.part || (idx + 1).toString().padStart(2, '0')}`, 110, H - 90, 'bold 28px "JetBrains Mono", monospace');
-    drawFoilText('GRUPO C · INVESTIGACIÓN PP3 2026', W - 110, H - 90, 'bold 28px "JetBrains Mono", monospace', 'right');
+    // 5. Pie de portada (Sin fecha)
+    drawFoilText(`PARTE ${slide.part || (idx + 1).toString().padStart(2, '0')}`, leftMargin, H - 90, 'bold 28px "JetBrains Mono", monospace');
+    drawFoilText('GRUPO C · INVESTIGACIÓN PP3', W - 110, H - 90, 'bold 28px "JetBrains Mono", monospace', 'right');
   },
 
   // --------------------------------------------------------------------------
@@ -1310,7 +1307,7 @@ window.APP = {
 
     const author = slide.author || 'GRUPO C';
     drawFoilSpineText(author.toUpperCase(), W / 2, H - 280, 'bold 32px "Inter", sans-serif');
-    drawFoilSpineText('2026', W / 2, H - 230, 'bold 28px "JetBrains Mono", monospace');
+    drawFoilSpineText('PP3', W / 2, H - 230, 'bold 28px "JetBrains Mono", monospace');
   },
 
   // --------------------------------------------------------------------------
@@ -1446,14 +1443,20 @@ window.APP = {
       // ROTACIÓN Y: FUNCIÓN CONTINUA C^∞ ENTRE ESTANTE Y ÁNGULO HÉROE 3/4
       // Ángulo de estante lateral (~1.26 rad)
       const shelfAngle = -smoothSign * (1.26 + Math.min(0.2, absDiff * 0.05));
+      
+      // La rotación interactiva del mouse se aplica ESTRICTAMENTE al libro activo en foco
+      const isCenterHero = (i === this.currentSlideIndex);
+      const activeOrbitY = isCenterHero ? this.bookOrbitY : 0;
+      const activeOrbitX = isCenterHero ? this.bookOrbitX : 0;
+
       // Ángulo de lectura a 3/4 de Stripe Press (-0.36 rad ~ -20.6°) + órbita interactiva + parallax
-      const heroAngle = -0.36 + this.bookOrbitY + this.currentTiltY * 0.45;
+      const heroAngle = -0.36 + activeOrbitY + this.currentTiltY * 0.45;
 
       // Fusión suave continua usando centerWeight
       book.rotation.y = (1 - centerWeight) * shelfAngle + centerWeight * heroAngle;
 
       // ROTACIÓN X: Fusión continua a cabeceo de perspectiva (+0.07 rad ~ +4°) + parallax
-      const heroPitch = 0.07 + this.bookOrbitX + this.currentTiltX * 0.45;
+      const heroPitch = 0.07 + activeOrbitX + this.currentTiltX * 0.45;
       book.rotation.x = centerWeight * heroPitch;
 
       // ROTACIÓN Z: Alabeo cinético aerodinámico durante el movimiento
@@ -1502,7 +1505,7 @@ window.APP = {
           titleEl.style.fontSize = currentSlide.slideTitle.length > 55 ? '1.5rem' : '1.85rem';
         }
         if (subEl) subEl.textContent = `${currentSlide.author} · ${currentSlide.category}`;
-        if (metaEl) metaEl.textContent = `NOVIEMBRE 2026 · PARTE ${currentSlide.part || (idx + 1).toString().padStart(2, '0')}`;
+        if (metaEl) metaEl.textContent = `PARTE ${currentSlide.part || (idx + 1).toString().padStart(2, '0')}`;
 
         infoBar.classList.remove('is-changing');
       }, 140);
@@ -1583,6 +1586,7 @@ window.APP = {
 
   closeSlideDetail: function() {
     this.isModalOpen = false;
+    this.modalCurrentIdx = null;
     const overlay = document.getElementById('modal-overlay');
     if (overlay) {
       overlay.classList.remove('is-open');
@@ -1597,9 +1601,36 @@ window.APP = {
     }
   },
 
+  // --------------------------------------------------------------------------
+  // LIGHTBOX DE IMÁGENES EN ALTA RESOLUCIÓN
+  // --------------------------------------------------------------------------
+  openLightbox: function(src, caption) {
+    const overlay = document.getElementById('image-lightbox');
+    const img = document.getElementById('lightbox-img');
+    const cap = document.getElementById('lightbox-caption');
+    if (!overlay || !img) return;
+
+    img.src = src;
+    if (cap) cap.textContent = caption || 'Esquema Técnico';
+    overlay.classList.add('is-open');
+    this.isLightboxOpen = true;
+  },
+
+  closeLightbox: function() {
+    const overlay = document.getElementById('image-lightbox');
+    if (!overlay) return;
+    overlay.classList.remove('is-open');
+    this.isLightboxOpen = false;
+  },
+
   updateModalContent: function(idx) {
     const slide = this.slides[idx];
     if (!slide) return;
+
+    const prevIdx = (typeof this.modalCurrentIdx === 'number') ? this.modalCurrentIdx : idx;
+    const isForward = idx >= prevIdx;
+    const isSlideChanged = (typeof this.modalCurrentIdx === 'number' && this.modalCurrentIdx !== idx);
+    this.modalCurrentIdx = idx;
 
     const modalBadge = document.getElementById('modal-badge');
     const modalTitle = document.getElementById('modal-title');
@@ -1613,8 +1644,33 @@ window.APP = {
     if (modalCounter) modalCounter.textContent = `${idx + 1} / ${this.slides.length}`;
 
     if (modalBody) {
-      modalBody.innerHTML = window.APP_COMPONENTS.renderSlideContent(slide, idx);
-      modalBody.scrollTop = 0;
+      const newHtml = window.APP_COMPONENTS.renderSlideContent(slide, idx);
+      const existingContainer = modalBody.querySelector('.slide-page-transition');
+
+      if (existingContainer && isSlideChanged) {
+        // Transición direccional suave entre diapositivas (slide + fade + blur)
+        const exitClass = isForward ? 'slide-exit-left' : 'slide-exit-right';
+        const enterClass = isForward ? 'slide-enter-right' : 'slide-enter-left';
+
+        existingContainer.className = `slide-page-transition ${exitClass}`;
+
+        const newWrapper = document.createElement('div');
+        newWrapper.className = `slide-page-transition ${enterClass}`;
+        newWrapper.innerHTML = newHtml;
+
+        setTimeout(() => {
+          modalBody.innerHTML = '';
+          modalBody.appendChild(newWrapper);
+          modalBody.scrollTop = 0;
+
+          // Forzar reflow para ejecutar animación fluida de entrada
+          void newWrapper.offsetWidth;
+          newWrapper.className = 'slide-page-transition slide-enter-active';
+        }, 160);
+      } else {
+        modalBody.innerHTML = `<div class="slide-page-transition slide-enter-active">${newHtml}</div>`;
+        modalBody.scrollTop = 0;
+      }
     }
 
     const modalBtnPrev = document.getElementById('modal-btn-prev');
@@ -1811,7 +1867,10 @@ window.APP = {
         e.preventDefault();
         this.toggleSlideDetail();
       } else if (e.key === 'Escape') {
-        if (this.isModalOpen) {
+        if (this.isLightboxOpen) {
+          e.preventDefault();
+          this.closeLightbox();
+        } else if (this.isModalOpen) {
           e.preventDefault();
           this.closeSlideDetail();
         }
@@ -1835,11 +1894,36 @@ window.APP = {
       });
     }
 
+    // Navegación con click en el Modal de Diapositiva (Reader UI):
+    // Click izquierdo = Avanzar diapositiva siguiente
+    // Click derecho = Retroceder diapositiva anterior
+    window.addEventListener('contextmenu', (e) => {
+      if (this.isModalOpen && !this.isLightboxOpen) {
+        e.preventDefault();
+        this.prevSlide();
+      }
+    });
+
     const modalOverlay = document.getElementById('modal-overlay');
     if (modalOverlay) {
       modalOverlay.addEventListener('click', (e) => {
         if (e.target === modalOverlay) {
           this.closeSlideDetail();
+          return;
+        }
+
+        // Si se hace click dentro del canvas del modal con botón primario (click izquierdo)
+        if (this.isModalOpen && !this.isLightboxOpen && e.button === 0) {
+          // Si el clic fue en un elemento interactivo o de control, no interferir
+          if (e.target.closest('button, a, input, textarea, select, pre, code, .code-editor, .btn-skills-action, .btn-close-modal, .btn-modal-nav, [onclick]')) {
+            return;
+          }
+          // Si el usuario seleccionó texto para copiar, no avanzar
+          const selection = window.getSelection();
+          if (selection && selection.toString().trim().length > 0) {
+            return;
+          }
+          this.nextSlide();
         }
       });
     }

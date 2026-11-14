@@ -47,7 +47,7 @@ window.APP_COMPONENTS = {
     const colors = ['#6366f1', '#f43f5e', '#f59e0b', '#10b981'];
 
     return `
-      <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%; padding:1rem 0; gap:2.5rem;">
+      <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; min-height:100%; padding:1rem 0; gap:2.5rem;">
         <div style="text-align:center;">
           <div style="font-size:0.85rem; font-family:var(--font-mono); color:var(--accent-cyan); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.75rem;">
             PRÁCTICAS PROFESIONALIZANTES III · GRUPO C
@@ -85,7 +85,7 @@ window.APP_COMPONENTS = {
     const c = slide.content;
 
     return `
-      <div style="display:flex; flex-direction:column; gap:1.25rem; height:100%;">
+      <div style="display:flex; flex-direction:column; gap:1.25rem; min-height:100%;">
         <div class="card-box" style="border-left:4px solid #6366f1; padding:1.1rem 1.4rem; background:rgba(15,23,42,0.9);">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
             <span class="tag tag-indigo">Interacción Aislada con Modelos de Lenguaje</span>
@@ -144,7 +144,7 @@ window.APP_COMPONENTS = {
     const c = slide.content;
 
     return `
-      <div style="display:flex; flex-direction:column; gap:1rem; height:100%;">
+      <div style="display:flex; flex-direction:column; gap:1rem; min-height:100%;">
         <div class="grid-2" style="gap:1rem;">
           <div class="card-box" style="border-left:4px solid #38bdf8; padding:0.85rem 1.3rem; background:rgba(15,23,42,0.9);">
             <div style="font-size:0.88rem; color:#e2e8f0; line-height:1.5;">
@@ -236,7 +236,7 @@ window.APP_COMPONENTS = {
     const c = slide.content;
 
     return `
-      <div style="display:flex; flex-direction:column; gap:1.25rem; height:100%;">
+      <div style="display:flex; flex-direction:column; gap:1.25rem; min-height:100%;">
         <div class="card-box" style="border-left:4px solid #f43f5e; padding:0.95rem 1.4rem; background:rgba(15,23,42,0.9);">
           <div style="font-size:0.95rem; font-weight:600; color:#f8fafc; line-height:1.5;">
             ${c.thesis}
@@ -286,7 +286,7 @@ window.APP_COMPONENTS = {
     const c = slide.content;
 
     return `
-      <div style="display:flex; flex-direction:column; height:100%; gap:0.9rem;">
+      <div style="display:flex; flex-direction:column; min-height:100%; gap:0.9rem;">
         <div class="card-box" style="border-left:4px solid #38bdf8; padding:0.85rem 1.4rem; background:rgba(15,23,42,0.9);">
           <div style="font-size:0.88rem; color:#e2e8f0; line-height:1.5;">
             ${c.ruleLead}
@@ -328,7 +328,7 @@ window.APP_COMPONENTS = {
     const c = slide.content;
 
     return `
-      <div style="display:flex; flex-direction:column; gap:1.25rem; height:100%;">
+      <div style="display:flex; flex-direction:column; gap:1.25rem; min-height:100%;">
         <div style="font-size:0.92rem; color:#cbd5e1; line-height:1.5;">
           ${c.lead}
         </div>
@@ -375,7 +375,7 @@ window.APP_COMPONENTS = {
     const c = slide.content;
 
     return `
-      <div style="display:flex; flex-direction:column; gap:1rem; height:100%;">
+      <div style="display:flex; flex-direction:column; gap:1rem; min-height:100%;">
         <div class="card-box" style="border-left:4px solid #f43f5e; padding:0.8rem 1.4rem; background:rgba(15,23,42,0.9);">
           <p style="font-size:0.92rem; color:#ffffff; line-height:1.5; font-weight:600;">
             ${c.paradoxLead}
@@ -420,7 +420,7 @@ window.APP_COMPONENTS = {
     const c = slide.content;
 
     return `
-      <div style="display:flex; flex-direction:column; gap:1.25rem; height:100%;">
+      <div style="display:flex; flex-direction:column; gap:1.25rem; min-height:100%;">
         <div style="font-size:0.92rem; color:#cbd5e1; line-height:1.5;">
           ${c.dilemma}
         </div>
@@ -489,7 +489,7 @@ window.APP_COMPONENTS = {
     const c = slide.content;
 
     return `
-      <div style="display:flex; flex-direction:column; gap:1.25rem; height:100%;">
+      <div style="display:flex; flex-direction:column; gap:1.25rem; min-height:100%;">
         <p style="font-size:0.92rem; color:#cbd5e1; line-height:1.5;">
           ${c.lead}
         </p>
@@ -544,7 +544,7 @@ window.APP_COMPONENTS = {
     const c = slide.content;
 
     return `
-      <div style="display:flex; flex-direction:column; gap:1.25rem; height:100%;">
+      <div style="display:flex; flex-direction:column; gap:1.15rem; min-height:100%;">
         <div style="font-size:0.92rem; color:#cbd5e1; line-height:1.5;">
           ${c.lead}
         </div>
@@ -562,6 +562,14 @@ window.APP_COMPONENTS = {
             </div>
           `).join('')}
         </div>
+
+        <!-- Botón para ver habilidades requeridas en grande (Modal Lightbox) -->
+        <div style="display:flex; justify-content:center; align-items:center; padding-top:0.5rem; margin-bottom:0.25rem;">
+          <button class="btn-skills-action" onclick="window.APP.openLightbox('El_rol_del_programador.png', 'Habilidades Requeridas — El Rol del Programador');" title="Ver esquema en alta resolución">
+            <span style="font-size:1.1rem; color:#2dd4bf;">✦</span>
+            <span>Habilidades requeridas</span>
+          </button>
+        </div>
       </div>
     `;
   },
@@ -573,26 +581,26 @@ window.APP_COMPONENTS = {
     const c = slide.content;
 
     return `
-      <div style="display:flex; flex-direction:column; height:100%; gap:0.75rem;">
-        <div class="card-box" style="border-left:4px solid #38bdf8; padding:0.65rem 1.2rem; background:rgba(56,189,248,0.08);">
-          <p style="font-size:0.82rem; color:#cbd5e1; line-height:1.45;">
+      <div style="display:flex; flex-direction:column; flex:1; height:100%; min-height:100%; gap:0.85rem;">
+        <div class="card-box" style="border-left:4px solid #38bdf8; padding:0.75rem 1.3rem; background:rgba(56,189,248,0.08); flex-shrink:0;">
+          <p style="font-size:0.85rem; color:#cbd5e1; line-height:1.45;">
             💡 <strong>${c.briefDistinction}</strong>
           </p>
         </div>
 
-        <div class="grid-2" style="flex:1; gap:1rem;">
+        <div class="grid-2" style="flex:1; display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; min-height:0;">
           <!-- ESTILO VIBECODING EN PYTHON -->
-          <div class="card-box" style="display:flex; flex-direction:column; justify-content:space-between; border-color:rgba(244,63,94,0.4); padding:0.85rem; background:rgba(15,23,42,0.9);">
-            <div>
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+          <div class="card-box" style="display:flex; flex-direction:column; border-color:rgba(244,63,94,0.4); padding:1rem 1.15rem; background:rgba(15,23,42,0.95); flex:1; min-height:0;">
+            <div style="display:flex; flex-direction:column; flex:1; min-height:0; gap:0.45rem;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.2rem; flex-shrink:0;">
                 <span class="tag tag-red">${c.vibe.title}</span>
-                <span style="font-size:0.72rem; color:#fb7185; font-family:var(--font-mono);">Python (Flask / SQLite)</span>
+                <span style="font-size:0.76rem; color:#fb7185; font-family:var(--font-mono);">Python (Flask / SQLite)</span>
               </div>
-              <div style="font-size:0.75rem; color:#cbd5e1; font-style:italic; margin-bottom:0.5rem; background:rgba(0,0,0,0.35); padding:0.35rem 0.6rem; border-radius:4px;">
+              <div style="font-size:0.78rem; color:#cbd5e1; font-style:italic; margin-bottom:0.35rem; background:rgba(0,0,0,0.4); padding:0.45rem 0.75rem; border-radius:4px; flex-shrink:0;">
                 ${c.vibe.prompt}
               </div>
 
-              <pre class="code-editor" style="margin:0; font-size:0.73rem; line-height:1.36; max-height:210px; overflow-y:auto; background:#0b0f19; color:#f8fafc; padding:0.75rem; border-radius:6px;"><span style="color:#94a3b8;"># Script desordenado: sin validar, sin hash ni transacciones</span>
+              <pre class="code-editor" style="margin:0; font-size:0.76rem; line-height:1.42; flex:1; min-height:0; overflow-y:auto; background:#0b0f19; color:#f8fafc; padding:0.85rem 1rem; border-radius:6px; border:1px solid rgba(255,255,255,0.06);"><span style="color:#94a3b8;"># Script desordenado: sin validar, sin hash ni transacciones</span>
 <span style="color:#f43f5e;">from</span> flask <span style="color:#f43f5e;">import</span> Flask, request, jsonify
 <span style="color:#f43f5e;">import</span> sqlite3
 
@@ -625,23 +633,23 @@ app = <span style="color:#38bdf8;">Flask</span>(__name__)
     <span style="color:#f43f5e;">return</span> <span style="color:#38bdf8;">jsonify</span>({<span style="color:#a5b4fc;">'ok'</span>: <span style="color:#f43f5e;">True</span>})</pre>
             </div>
 
-            <div style="margin-top:0.5rem; font-size:0.75rem; color:#fb7185; background:rgba(244,63,94,0.1); padding:0.5rem; border-radius:4px; border:1px solid rgba(244,63,94,0.25);">
+            <div style="margin-top:0.65rem; font-size:0.78rem; color:#fb7185; background:rgba(244,63,94,0.1); padding:0.6rem 0.85rem; border-radius:6px; border:1px solid rgba(244,63,94,0.25); flex-shrink:0;">
               <strong>Fallas:</strong> Inyección SQL directa con f-strings · Clave en texto plano · Función inventada · Sin transacción atómica
             </div>
           </div>
 
           <!-- ESTILO PROGRAMACIÓN ASISTIDA EN PYTHON -->
-          <div class="card-box" style="display:flex; flex-direction:column; justify-content:space-between; border-color:rgba(16,185,129,0.4); padding:0.85rem; background:rgba(15,23,42,0.9);">
-            <div>
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+          <div class="card-box" style="display:flex; flex-direction:column; border-color:rgba(16,185,129,0.4); padding:1rem 1.15rem; background:rgba(15,23,42,0.95); flex:1; min-height:0;">
+            <div style="display:flex; flex-direction:column; flex:1; min-height:0; gap:0.45rem;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.2rem; flex-shrink:0;">
                 <span class="tag tag-green">${c.pro.title}</span>
-                <span style="font-size:0.72rem; color:#34d399; font-family:var(--font-mono);">Python (Pydantic / Argon2 / SQLAlchemy)</span>
+                <span style="font-size:0.76rem; color:#34d399; font-family:var(--font-mono);">Python (Pydantic / Argon2 / SQLAlchemy)</span>
               </div>
-              <div style="font-size:0.75rem; color:#cbd5e1; font-style:italic; margin-bottom:0.5rem; background:rgba(0,0,0,0.35); padding:0.35rem 0.6rem; border-radius:4px;">
+              <div style="font-size:0.78rem; color:#cbd5e1; font-style:italic; margin-bottom:0.35rem; background:rgba(0,0,0,0.4); padding:0.45rem 0.75rem; border-radius:4px; flex-shrink:0;">
                 ${c.pro.prompt}
               </div>
 
-              <pre class="code-editor" style="margin:0; font-size:0.73rem; line-height:1.36; max-height:210px; overflow-y:auto; background:#0b0f19; color:#f8fafc; padding:0.75rem; border-radius:6px;"><span style="color:#94a3b8;"># Capas ordenadas: validación estricta, hash seguro y transacción</span>
+              <pre class="code-editor" style="margin:0; font-size:0.76rem; line-height:1.42; flex:1; min-height:0; overflow-y:auto; background:#0b0f19; color:#f8fafc; padding:0.85rem 1rem; border-radius:6px; border:1px solid rgba(255,255,255,0.06);"><span style="color:#94a3b8;"># Capas ordenadas: validación estricta, hash seguro y transacción</span>
 <span style="color:#f43f5e;">from</span> pydantic <span style="color:#f43f5e;">import</span> BaseModel, Field
 <span style="color:#f43f5e;">from</span> argon2 <span style="color:#f43f5e;">import</span> PasswordHasher
 <span style="color:#f43f5e;">from</span> sqlalchemy.orm <span style="color:#f43f5e;">import</span> Session
@@ -678,7 +686,7 @@ ph = <span style="color:#38bdf8;">PasswordHasher</span>()
     <span style="color:#f43f5e;">return True</span></pre>
             </div>
 
-            <div style="margin-top:0.5rem; font-size:0.75rem; color:#34d399; background:rgba(16,185,129,0.1); padding:0.5rem; border-radius:4px; border:1px solid rgba(16,185,129,0.3);">
+            <div style="margin-top:0.65rem; font-size:0.78rem; color:#34d399; background:rgba(16,185,129,0.1); padding:0.6rem 0.85rem; border-radius:6px; border:1px solid rgba(16,185,129,0.3); flex-shrink:0;">
               <strong>Garantías:</strong> Validación con Pydantic · Contraseña con Argon2 · Consulta parametrizada · Transacción atómica con reversión segura
             </div>
           </div>
@@ -694,7 +702,7 @@ ph = <span style="color:#38bdf8;">PasswordHasher</span>()
     const c = slide.content;
 
     return `
-      <div style="display:flex; flex-direction:column; gap:1.25rem; height:100%;">
+      <div style="display:flex; flex-direction:column; gap:1.25rem; min-height:100%;">
         <div class="grid-4" style="flex:1; gap:1rem;">
           ${c.summaryPillars.map(p => `
             <div class="card-box" style="display:flex; flex-direction:column; justify-content:space-between; border-color:rgba(99,102,241,0.3); padding:1.2rem; background:rgba(15,23,42,0.9);">
