@@ -8,8 +8,8 @@ window.PRESENTATION_DATA = {
   "metadata": {
     "title": "Programación Asistida por Inteligencia Artificial",
     "subtitle": "Investigación Técnica — Grupo C",
-    "course": "Prácticas Profesionalizantes III (PP3) · ISFDyT N° 179",
-    "institution": "ISFDyT N° 179 'Dr. Carlos Pellegrini'"
+    "course": "Prácticas Profesionalizantes III (PP3) · I.S.F.T. N° 179",
+    "institution": "I.S.F.T. N° 179 'Dr. Carlos Pellegrini'"
   },
   "slides": [
     // ------------------------------------------------------------------------

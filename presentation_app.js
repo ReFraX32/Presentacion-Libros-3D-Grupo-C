@@ -749,7 +749,7 @@ window.APP = {
       c.fillText(chipLabel, cx, cy - 25);
       c.font = '500 22px "JetBrains Mono", monospace';
       c.fillText('SYSTEM ARCHITECTURE', cx, cy + 18);
-      c.fillText('PP3 · ISFDyT 179', cx, cy + 52);
+      c.fillText('PP3 · I.S.F.T. 179', cx, cy + 52);
     });
 
     // DISIPADOR RADIAL / TURBINA DE REFRIGERACIÓN SUPERIOR
@@ -1907,14 +1907,12 @@ window.APP = {
     const modalOverlay = document.getElementById('modal-overlay');
     if (modalOverlay) {
       modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) {
-          this.closeSlideDetail();
-          return;
-        }
+        // En pantalla completa, las diapositivas no se cierran al clickear el fondo
+        // para evitar salidas accidentales. Se cierran con el botón ✕ o la tecla Escape.
 
-        // Si se hace click dentro del canvas del modal con botón primario (click izquierdo)
+        // Click primario (izquierdo): avanzar a la siguiente diapositiva
         if (this.isModalOpen && !this.isLightboxOpen && e.button === 0) {
-          // Si el clic fue en un elemento interactivo o de control, no interferir
+          // Si el clic fue en un elemento interactivo (botones, inputs, códigos, etc.), no avanzar
           if (e.target.closest('button, a, input, textarea, select, pre, code, .code-editor, .btn-skills-action, .btn-close-modal, .btn-modal-nav, [onclick]')) {
             return;
           }

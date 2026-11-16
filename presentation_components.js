@@ -195,18 +195,19 @@ window.APP_COMPONENTS = {
             <text x="112" y="140" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="bold">Decisión humana final</text>
 
             <!-- Flecha al Modelo -->
-            <path d="M 200 109 L 260 109" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#v2-dark-arrow)" />
+            <path d="M 200 109 L 255 109" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#v2-dark-arrow)" />
 
             <!-- 2. Núcleo de la IA -->
-            <rect x="260" y="42" width="195" height="134" rx="10" fill="rgba(49, 46, 129, 0.85)" stroke="#a855f7" stroke-width="2" />
-            <circle cx="357" cy="74" r="17" fill="#a855f7" opacity="0.3" />
-            <text x="357" y="80" text-anchor="middle" fill="#c084fc" font-size="17">🧠</text>
-            <text x="357" y="107" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">NÚCLEO DE INTELIGENCIA ARTIFICIAL</text>
-            <text x="357" y="126" text-anchor="middle" fill="#a5b4fc" font-size="9.5">Cálculo de probabilidades</text>
-            <text x="357" y="144" text-anchor="middle" fill="#c4b5fd" font-size="9">Aislado dentro del arnés</text>
+            <rect x="255" y="42" width="205" height="134" rx="10" fill="rgba(49, 46, 129, 0.85)" stroke="#a855f7" stroke-width="2" />
+            <circle cx="357.5" cy="71" r="16" fill="#a855f7" opacity="0.3" />
+            <text x="357.5" y="77" text-anchor="middle" fill="#c084fc" font-size="16">🧠</text>
+            <text x="357.5" y="100" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="bold" letter-spacing="0.03em">NÚCLEO DE</text>
+            <text x="357.5" y="115" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="bold" letter-spacing="0.03em">INTELIGENCIA ARTIFICIAL</text>
+            <text x="357.5" y="133" text-anchor="middle" fill="#a5b4fc" font-size="9.5">Cálculo de probabilidades</text>
+            <text x="357.5" y="149" text-anchor="middle" fill="#c4b5fd" font-size="9">Aislado dentro del arnés</text>
 
             <!-- Flecha a las Herramientas -->
-            <path d="M 455 109 L 515 109" stroke="#10b981" stroke-width="2.5" marker-end="url(#v2-dark-green)" />
+            <path d="M 460 109 L 515 109" stroke="#10b981" stroke-width="2.5" marker-end="url(#v2-dark-green)" />
 
             <!-- 3. Herramientas y Verificadores (Compilador) -->
             <rect x="515" y="44" width="205" height="58" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.6" />
